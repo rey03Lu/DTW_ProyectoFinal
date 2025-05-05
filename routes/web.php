@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\Registro\RegistroController;
 
 
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
+//Ruta para tareaController
+use app\Http\Controllers\tareaController;
 
 
 // --- LOGIN ---
@@ -56,5 +58,10 @@ Route::post('/admin/editar-perfil/actualizar', [PerfilController::class, 'editar
 Route::get('sin-permisos', [ControlController::class,'indexSinPermiso'])->name('no.permisos.index');
 
 Route::get('/admin/dashboard', [DashboardController::class,'vistaDashboard'])->name('admin.dashboard.index');
+
+// --- Definición de rutas para las tareas para el CRUD ---
+Route::resource('tareas', controller: tareaController::class);
+
+
 
 
