@@ -13,7 +13,7 @@ use App\Http\Controllers\Backend\Registro\RegistroController;
 
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
 //Ruta para tareaController
-use app\Http\Controllers\tareaController;
+use App\Http\Controllers\tareaController;
 
 
 // --- LOGIN ---
