@@ -10,7 +10,9 @@ class TaskController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Task::class); // Control de permisos
-        $tasks = Task::where('user_id', auth()->id())->get();
+        // lo que sucede es que tengo en modo pruebas el middleware de auth y no me deja ver la vista
+        // $tasks = Task::where('user_id', auth()->id())->get();
+        $tasks = Task::all(); // Mostrar todas las tareas temporalmente para pruebas
         return response()->json($tasks);
     }
 

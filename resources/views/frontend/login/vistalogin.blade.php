@@ -153,7 +153,7 @@
         if (response.data.success === 0) {
             toastr.error('Validación incorrecta')
         } else if (response.data.success === 1) {
-            window.location = response.data.ruta;
+            window.location = '/tasks-view'; // Redirigir a la vista del CRUD después del login
         } else if (response.data.success === 2) {
             toastr.error('Contraseña incorrecta');
         } else if (response.data.success === 3) {
