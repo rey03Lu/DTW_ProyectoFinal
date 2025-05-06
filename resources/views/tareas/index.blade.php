@@ -4,6 +4,17 @@
     <title>Listado de Tareas</title>
 </head>
 <body>
-    <h1>Vista</h1>
+    @extends('backend.menus.index')
+    @section('content')
+    <div class="content-wrapper">
+      <div class="content-header">
+        <h3>Listas</h3>
+      </div>
+      <div class="content">
+        <p>Tareas</p>
+      </div>
+    </div>
+    @endsection
+    
 </body>
 </html>

@@ -23,7 +23,7 @@ class tareaController extends Controller
      */
     public function create()
     {
-        return view ('tareas.create');
+        return view ('tareas.createTareas');
     }
     /**
      * Store a newly created resource in storage.
