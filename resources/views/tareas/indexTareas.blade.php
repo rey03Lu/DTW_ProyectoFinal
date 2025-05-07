@@ -1,5 +1,5 @@
 <!-- Listar Tareas -->
-@extends('layouts.app')
+@extends('layouts.appTareas')
 @section('content')
 <h1>Listado de Tareas</h1>
 <a href="{{ route('tareas.create') }}">Crear nueva tarea</a>

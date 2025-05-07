@@ -16,7 +16,7 @@ class tareaController extends Controller
     public function index()
     {
         $tareas = Tarea::all();
-        return view ('tareas.index', compact('tareas'));
+        return view('tareas.indexTareas', ['tareas' => $tareas,'titulo' => 'Listado de Tareas']);
     }
     /**
      * Show the form for creating a new resource.
@@ -57,7 +57,7 @@ class tareaController extends Controller
     public function update(Request $request, string $id)
     {
         $tarea = Tarea::findOrFail($id);
-        $tarea = update($request->all());
+        $tarea -> update($request->all());
         return redirect()->route('tareas.index');
     }
 

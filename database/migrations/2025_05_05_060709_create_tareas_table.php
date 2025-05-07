@@ -18,8 +18,8 @@ return new class extends Migration
             //Titulo
             $table->string('titulo');
             //Descripcion, puede quedar null porque no uchas veces se usa
-            $table->text('descripción')->nullable();
-            //Estado (booleana por los estado "Completado", "Por terminar", "Iniciada")
+            $table->text('descripcion')->nullable();
+            //Estado (booleana por los estados)
             $table->boolean('estado')->default(false);
             //timestamps (creada por defecto)
             $table->timestamps();
@@ -29,6 +29,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      * Antes de, ejecutar: php artisan migrate
+     * refrescar: php artisan migrate:fresh
      */
     public function down(): void
     {

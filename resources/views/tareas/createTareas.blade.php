@@ -1,5 +1,5 @@
 <!-- Crear Tareas -->
-@extends('layouts.app')
+@extends('layouts.appTareas')
 @section('content')
 <h1>Crear Nueva Tarea</h1>
 <form action="{{ route('tareas.store') }}" method="POST">
