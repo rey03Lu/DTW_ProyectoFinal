@@ -1,5 +1,5 @@
 <!-- Editar Tareas -->
-@extends('layouts.app')
+@extends('layouts.appTareas')
 @section('content')
 <h1>Editar Tarea</h1>
 <form action="{{ route('tareas.update', $tarea) }}" method="POST">
