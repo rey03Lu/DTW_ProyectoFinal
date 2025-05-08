@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\NASA\ApodsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Login\LoginController;
 use App\Http\Controllers\Controles\ControlController;
@@ -66,5 +67,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/tasks-view', function () {
     return view('tasks');
 });
+
+// REST API
+// Rutas públicas para test de API REST
+Route::get('/nasaApod', [ApodsController::class, 'getApod']); // listar
+Route::get('/nasaApod/{random_number}', [ApodsController::class, 'showAstronomyPictures']); // Retorna imagenes aleatorias de la NASA
+
+// rutas protegidas
+Route::middleware(['auth:sanctum'])->group(function () {
+   // Route::post('/nasaApod', [ApodsController::class, 'store']);
+    //Route::delete('/nasaApod/{id}', [ApodsController::class, 'destroy']);
+});
+
 
 
