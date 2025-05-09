@@ -39,7 +39,8 @@ class tareaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $tarea = Tarea::findOrFail($id); 
+        return view('tareas.showTareas', compact('tarea'));
     }
 
     /**
@@ -48,7 +49,7 @@ class tareaController extends Controller
     public function edit(string $id)
     {
         $tarea = Tarea::findOrFail($id);
-        return view('tareas.edit', compact('tarea'));
+        return view('tareas.editTarea', compact('tarea'));
     }
 
     /**
