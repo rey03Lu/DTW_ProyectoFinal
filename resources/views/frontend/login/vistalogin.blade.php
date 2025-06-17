@@ -2,13 +2,13 @@
 <html lang="es">
 
 <head>
-    <title>Panel</title>
+    <title>DIA</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/login/bootstrap.min.css') }}">
 
     <!-- icono del sistema -->
-    <link href="{{ asset('images/icono-sistemalogo.png') }}" rel="icon">
+    <link href="{{ asset('images/amanecer.png') }}" rel="icon">
     <!-- libreria -->
     <link href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}" type="text/css" rel="stylesheet" />
 
@@ -29,7 +29,7 @@
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-image: url({{ asset('images/fondologin.jpeg') }});
+            background-image: url({{ asset('images/FondoVerde.jpg') }});
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -71,6 +71,21 @@
             width:200px;
             margin-bottom:-70px;
         }
+        .button-acceder {
+            background-color: #426e55;
+            border-color: #426e55;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 25px;
+        }
+        .button-acceder:hover {
+            background-color: #73986f;
+        }
+        .form-control:focus {
+            border-color: #426e55;
+            box-shadow: 0 0 0 0.2rem rgba(66, 110, 85, 0.25);
+        }
     </style>
 </head>
 
@@ -94,7 +109,10 @@
                                 <label class="font-500">Contraseña</label>
                                 <input class="form-control form-control-lg" id="password" type="password">
 
-                                <input type="button" value="ACCEDER" style="margin-top: 25px; width: 100%; font-weight: bold" onclick="login()" class="button button-uppercase button-primary button-pill">
+
+                                <input type="button" value="ACCEDER" onclick="login()" class="button button-uppercase button-pill button-acceder">
+
+
                             </form>
                         </div>
                     </div>
@@ -173,7 +191,7 @@
                 text: "Contactar a la administración",
                 icon: 'info',
                 showCancelButton: false,
-                confirmButtonColor: '#28a745',
+                confirmButtonColor: '#73986f',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Aceptar',
             }).then((result) => {
