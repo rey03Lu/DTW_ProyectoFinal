@@ -40,6 +40,13 @@
                     </ul>
                  </li>
                 @endcan
+                <!-- Tareas -->
+                 <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tareas.index') }}" target="frameprincipal">
+                                <i class="fas fa-tasks"></i>
+                                <p>Tareas</p>
+                            </a>
+                 </li>
 
 
 

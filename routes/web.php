@@ -8,8 +8,12 @@ use App\Http\Controllers\Backend\Roles\PermisoController;
 use App\Http\Controllers\Backend\Perfil\PerfilController;
 use App\Http\Controllers\Backend\Configuracion\ConfiguracionController;
 use App\Http\Controllers\Backend\Registro\RegistroController;
+
+
+
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
-use App\Http\Controllers\TaskController;
+//Ruta para tareaController
+use App\Http\Controllers\tareaController;
 
 
 // --- LOGIN ---
@@ -55,16 +59,9 @@ Route::get('sin-permisos', [ControlController::class,'indexSinPermiso'])->name('
 
 Route::get('/admin/dashboard', [DashboardController::class,'vistaDashboard'])->name('admin.dashboard.index');
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/tasks', [TaskController::class, 'index']);
-    Route::post('/tasks', [TaskController::class, 'store']);
-    Route::get('/tasks/{task}', [TaskController::class, 'show']);
-    Route::put('/tasks/{task}', [TaskController::class, 'update']);
-    Route::delete('/tasks/{task}', [TaskController::class, 'destroy']);
-});
+// --- Definición de rutas para las tareas para el CRUD ---
+Route::resource('tareas', controller: tareaController::class);
 
-Route::get('/tasks-view', function () {
-    return view('tasks');
-});
+
 
 
