@@ -46,7 +46,59 @@
         </nav>
     </div>
 
+    <!-- Footer Sidebar: para tener lo del navbar aqui -->
+    <div class="sidebar-footer p-2 mt-auto" style="margin-bottom: 20px;">
+        <ul class="nav nav-pills nav-sidebar flex-column">
+            <li class="nav-item">
+                <a href="{{ route('admin.perfil') }}" target="frameprincipal" class="nav-link text-white">
+                    <i class="fas fa-user"></i>
+                    <p>Editar Perfil</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <!-- Botón que abre el popup de confirmacion de salida -->
+                <a href="#" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Cerrar Sesión</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </aside>
+
+<!-- Formulario oculto para cerrar sesion -->
+<form id="frm-logout" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
+<!-- POPUP de Cierre de Sesión -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Cierre de Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea cerrar sesión?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmLogoutBtn">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para enviar el logout al confirmar -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('confirmLogoutBtn').addEventListener('click', function () {
+            document.getElementById('frm-logout').submit();
+        });
+    });
+</script>
 
 <!-- Estilos del Sidebar -->
 <style>
