@@ -30,6 +30,12 @@ class tareaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'titulo' => 'required',
+            'fecha_vencimiento' => 'nullable|date',
+            // ...otras validaciones...
+        ]);
+
         Tarea::create($request->all());
         return redirect()->route('tareas.index');
     }
@@ -57,8 +63,14 @@ class tareaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'titulo' => 'required',
+            'fecha_vencimiento' => 'nullable|date',
+            // ...otras validaciones...
+        ]);
+
         $tarea = Tarea::findOrFail($id);
-        $tarea -> update($request->all());
+        $tarea->update($request->all());
         return redirect()->route('tareas.index');
     }
 

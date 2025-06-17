@@ -11,6 +11,10 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'titulo', 'descripcion', 'estado', 'fecha_vencimiento'
+    ];
+
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
