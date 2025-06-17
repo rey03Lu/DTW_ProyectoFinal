@@ -70,13 +70,14 @@ Route::get('/tasks-view', function () {
 
 // REST API
 // Rutas públicas para test de API REST
-Route::get('/nasaApod', [ApodsController::class, 'getApod']); // listar
-Route::get('/nasaApod/{random_number}', [ApodsController::class, 'showAstronomyPictures']); // Retorna imagenes aleatorias de la NASA
+//Route::get('/nasaApod', [ApodsController::class, 'getApod']); // listar
+//Route::get('/nasaApod/randomApod/{random_number}', [ApodsController::class, 'showAstronomyPictures']); // Retorna imagenes aleatorias de la NASA
+Route::get('/nasaApod/dashboard', [ApodsController::class,'index'])->name('nasaApod.dashboard'); // Redirección a dashboard NasaAPOD
 
-// rutas protegidas
+// Rutas protegidas
 Route::middleware(['auth:sanctum'])->group(function () {
-   // Route::post('/nasaApod', [ApodsController::class, 'store']);
-    //Route::delete('/nasaApod/{id}', [ApodsController::class, 'destroy']);
+   Route::post('/nasaApod/view', [ApodsController::class, 'getApod'])->name('nasaApod.view.apod');
+   //Route::post('/nasaApod/view/randomApod/{random_number}', [ApodsController::class, 'getApod'])->name('nasaApod.view.random');
 });
 
 

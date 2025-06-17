@@ -15,7 +15,14 @@ class ApodsController extends Controller
 
     public function __construct(NasaApiService $nasaApiService)
     {
+        $this->middleware('auth');
         $this->nasaApiService = $nasaApiService;
+    }
+
+    // Retorna vista de ver dashboard de APOD en sidebar
+    public function index()
+    {
+        return view('backend.admin.nasa_api.dashboard.nasa_dashboard');
     }
 
     /**
