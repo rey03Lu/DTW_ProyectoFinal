@@ -23,10 +23,19 @@
     <style>
         html, body {
             height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-image: url({{ asset('images/fondo3.jpg') }});
+            background-image: url({{ asset('images/fondologin.jpeg') }});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .demo-container {
@@ -75,10 +84,10 @@
 
                         <div class="p-5 bg-white rounded shadow-lg">
                             <div class="text-center image-size-small position-relative">
-                                <img src="{{ asset('images/logo.png') }}" class=" p-2">
+                                <img src="{{ asset('images/cuenta.png') }}" class=" p-2">
                             </div>
                             <h3 class="mb-2 text-center pt-5"><strong>&nbsp;</strong></h3>
-                            <p class="text-center lead" style="font-weight: bold">BASE</p>
+                            <p class="text-center lead" style="font-weight: bold">Iniciar Sesión</p>
                             <form>
                                 <label style="margin-top: 10px" class="font-500">Usuario</label>
                                 <input class="form-control form-control-lg mb-3" id="usuario" autocomplete="off" type="text">
