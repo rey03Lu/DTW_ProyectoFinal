@@ -21,6 +21,8 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             //Estado (booleana por los estados)
             $table->boolean('estado')->default(false);
+            // Nueva columna
+            $table->date('fecha_vencimiento')->nullable();
             //timestamps (creada por defecto)
             $table->timestamps();
         });
