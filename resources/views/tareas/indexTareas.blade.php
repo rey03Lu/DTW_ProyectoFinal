@@ -1,32 +1,40 @@
-<!-- Listar Tareas -->
+<!-- Listar Tareas usando el mismo estilo que roles y permisos -->
 @extends('layouts.appTareas')
 @section('content')
-<h1>Listado de Tareas</h1>
-<a href="{{ route('tareas.create') }}">Crear nueva tarea</a>
-<table>
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($tareas as $tarea)
-        <tr>
-            <td>{{ $tarea->titulo }}</td>
-            <td>{{ $tarea->estado ? 'Completada' : 'Pendiente' }}</td>
-            <td>
-                <a href="{{ route('tareas.show', $tarea) }}">Ver</a>
-                <a href="{{ route('tareas.edit', $tarea) }}">Editar</a>
-                <form action="{{ route('tareas.destroy', $tarea) }}" method="POST" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title">Listado de Tareas</h3>
+        <a href="{{ route('tareas.create') }}" class="btn btn-success">Crear nueva tarea</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($tareas as $tarea)
+                <tr>
+                    <td>{{ $tarea->titulo }}</td>
+                    <td>{{ $tarea->estado ? 'Completada' : 'Pendiente' }}</td>
+                    <td class="text-center">
+                        <a href="{{ route('tareas.show', $tarea->id) }}" class="btn btn-info btn-sm">Ver</a>
+                        <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('tareas.destroy', $tarea->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar esta tarea?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 @endsection

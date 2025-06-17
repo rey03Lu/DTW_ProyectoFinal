@@ -1,0 +1,24 @@
+<!-- Formulario para que createTareas y editTareas usen por medio de JS -->
+<form id="form-tarea">
+  <input type="hidden" name="_token" id="token-field">
+
+  <div class="form-group">
+    <label for="titulo">Título:</label>
+    <input type="text" name="titulo" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">Descripción:</label>
+    <textarea name="descripcion" class="form-control" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="estado">Estado:</label>
+    <select name="estado" class="form-control">
+      <option value="0">Pendiente</option>
+      <option value="1">Completada</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
