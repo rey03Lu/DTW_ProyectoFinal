@@ -32,8 +32,8 @@ class tareaController extends Controller
     {
         $request->validate([
             'titulo' => 'required',
-            'fecha_vencimiento' => 'nullable|date',
-            // ...otras validaciones...
+            'fecha_vencimiento' => 'nullable|date|after_or_equal:today',
+            
         ]);
 
         Tarea::create($request->all());
@@ -66,7 +66,6 @@ class tareaController extends Controller
         $request->validate([
             'titulo' => 'required',
             'fecha_vencimiento' => 'nullable|date',
-            // ...otras validaciones...
         ]);
 
         $tarea = Tarea::findOrFail($id);

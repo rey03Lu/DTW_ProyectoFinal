@@ -1,6 +1,17 @@
 @extends('layouts.appTareas')
 @section('content')
 <h1>Crear Nueva Tarea</h1>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{ route('tareas.store') }}" method="POST">
     @csrf
     <label>Título:</label>
