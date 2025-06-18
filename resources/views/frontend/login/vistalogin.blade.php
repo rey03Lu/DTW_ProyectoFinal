@@ -2,13 +2,13 @@
 <html lang="es">
 
 <head>
-    <title>Panel</title>
+    <title>DIA</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/login/bootstrap.min.css') }}">
 
     <!-- icono del sistema -->
-    <link href="{{ asset('images/icono-sistemalogo.png') }}" rel="icon">
+    <link href="{{ asset('images/amanecer.png') }}" rel="icon">
     <!-- libreria -->
     <link href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}" type="text/css" rel="stylesheet" />
 
@@ -23,10 +23,19 @@
     <style>
         html, body {
             height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-image: url({{ asset('images/fondo3.jpg') }});
+            background-image: url({{ asset('images/FondoVerde.jpg') }});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .demo-container {
@@ -62,6 +71,21 @@
             width:200px;
             margin-bottom:-70px;
         }
+        .button-acceder {
+            background-color: #426e55;
+            border-color: #426e55;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 25px;
+        }
+        .button-acceder:hover {
+            background-color: #73986f;
+        }
+        .form-control:focus {
+            border-color: #426e55;
+            box-shadow: 0 0 0 0.2rem rgba(66, 110, 85, 0.25);
+        }
     </style>
 </head>
 
@@ -75,17 +99,20 @@
 
                         <div class="p-5 bg-white rounded shadow-lg">
                             <div class="text-center image-size-small position-relative">
-                                <img src="{{ asset('images/logo.png') }}" class=" p-2">
+                                <img src="{{ asset('images/cuenta.png') }}" class=" p-2">
                             </div>
                             <h3 class="mb-2 text-center pt-5"><strong>&nbsp;</strong></h3>
-                            <p class="text-center lead" style="font-weight: bold">BASE</p>
+                            <p class="text-center lead" style="font-weight: bold">Iniciar Sesión</p>
                             <form>
                                 <label style="margin-top: 10px" class="font-500">Usuario</label>
                                 <input class="form-control form-control-lg mb-3" id="usuario" autocomplete="off" type="text">
                                 <label class="font-500">Contraseña</label>
                                 <input class="form-control form-control-lg" id="password" type="password">
 
-                                <input type="button" value="ACCEDER" style="margin-top: 25px; width: 100%; font-weight: bold" onclick="login()" class="button button-uppercase button-primary button-pill">
+
+                                <input type="button" value="ACCEDER" onclick="login()" class="button button-uppercase button-pill button-acceder">
+
+
                             </form>
                         </div>
                     </div>
@@ -153,7 +180,7 @@
         if (response.data.success === 0) {
             toastr.error('Validación incorrecta')
         } else if (response.data.success === 1) {
-            window.location = '/tasks-view'; // Redirigir a la vista del CRUD después del login
+            window.location = response.data.ruta;
         } else if (response.data.success === 2) {
             toastr.error('Contraseña incorrecta');
         } else if (response.data.success === 3) {
@@ -164,7 +191,7 @@
                 text: "Contactar a la administración",
                 icon: 'info',
                 showCancelButton: false,
-                confirmButtonColor: '#28a745',
+                confirmButtonColor: '#73986f',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Aceptar',
             }).then((result) => {
