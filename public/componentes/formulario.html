@@ -1,0 +1,40 @@
+<!-- Formulario para createTareas y editTareas -->
+<form id="form-tarea">
+  <input type="hidden" name="_token" id="token-field">
+
+  <!-- Título -->
+  <div class="form-group mb-3">
+    <label for="titulo">Título:</label>
+    <input type="text" name="titulo" class="form-control" required>
+    <div class="invalid-feedback">El título es obligatorio.</div>
+  </div>
+
+  <!-- Descripción -->
+  <div class="form-group mb-3">
+    <label for="descripcion">Descripción:</label>
+    <textarea name="descripcion" class="form-control" required></textarea>
+    <div class="invalid-feedback">La descripción es obligatoria.</div>
+  </div>
+
+  <!-- Estado -->
+  <div class="form-group mb-3">
+    <label for="estado">Estado:</label>
+    <select name="estado" class="form-control" required>
+      <option value="0">Pendiente</option>
+      <option value="1">Completada</option>
+      <option value="2">En proceso</option>
+    </select>
+    <div class="invalid-feedback">Seleccione un estado válido.</div>
+  </div>
+
+  <!-- Fecha de Vencimiento -->
+  <div class="form-group mb-3">
+    <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+    <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control">
+    <div class="invalid-feedback">La fecha no puede ser anterior a hoy.</div>
+  </div>
+
+  <!-- Botón -->
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+

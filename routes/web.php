@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\NASA\ApodsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Login\LoginController;
 use App\Http\Controllers\Controles\ControlController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\Backend\Registro\RegistroController;
 
 
 use App\Http\Controllers\Backend\Dashboard\DashboardController;
+//Ruta para tareaController
+use App\Http\Controllers\tareaController;
 
 
 // --- LOGIN ---
@@ -56,5 +59,24 @@ Route::post('/admin/editar-perfil/actualizar', [PerfilController::class, 'editar
 Route::get('sin-permisos', [ControlController::class,'indexSinPermiso'])->name('no.permisos.index');
 
 Route::get('/admin/dashboard', [DashboardController::class,'vistaDashboard'])->name('admin.dashboard.index');
+
+// --- Definición de rutas para las tareas para el CRUD ---
+Route::resource('tareas', controller: tareaController::class);
+
+
+
+// REST API
+// Rutas públicas para test de API REST
+Route::get('/nasaApod', [ApodsController::class, 'getApodTest']); // listar
+Route::get('/nasaApod/randomApod/{random_number}', [ApodsController::class, 'showAstronomyPictures']); // Retorna imagenes aleatorias de la NASA
+Route::get('/nasaApod/dashboard', [ApodsController::class,'index'])->name('nasaApod.dashboard'); // Redirección a dashboard NasaAPOD
+
+// Rutas protegidas
+Route::middleware(['auth:sanctum'])->group(function () {
+   Route::post('/nasaApod/view/apod', [ApodsController::class, 'getApod'])->name('nasaApod.view.apod');
+   Route::post('/nasaApod/view/randomApod', [ApodsController::class, 'getRandomApods'])->name('nasaApod.view.random');
+   
+});
+
 
 

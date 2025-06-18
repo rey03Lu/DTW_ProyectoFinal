@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Policies\TaskPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,14 +14,20 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
+        Task::class => TaskPolicy::class,
         //
     ];
 
     /**
-     * Register any authentication / authorization services.
+     * registra la política de autorización para el modelo Task
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+        Gate::define('task.delete', [TaskPolicy::class, 'delete']);
+        Gate::define('task.viewAny', [TaskPolicy::class, 'viewAny']);
+        Gate::define('task.view', [TaskPolicy::class, 'view']);
+        Gate::define('task.create', [TaskPolicy::class, 'create']);
+        Gate::define('task.update', [TaskPolicy::class, 'update']);
     }
 }

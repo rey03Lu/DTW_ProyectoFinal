@@ -25,5 +25,9 @@ class RolesSeeder extends Seeder
         // PERMISO PARA VISTA DASHBOARD
         Permission::create(['name' => 'sidebar.dashboard', 'description' => 'sidebar dashboard'])->syncRoles($roleUsuario);
 
+        // PERMISO PARA QUE SOLO ADMIN PUEDA EDITAR Y ELIMINAR TAREAS DEL CRUD Y PARA QUE @CAN FUNCIONE
+        Permission::create(['name' => 'editar tareas'])->syncRoles($roleAdmin);
+        Permission::create(['name' => 'eliminar tareas'])->syncRoles($roleAdmin);
+
     }
 }
