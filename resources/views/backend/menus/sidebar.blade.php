@@ -1,39 +1,40 @@
-
 <aside class="main-sidebar elevation-4 d-flex flex-column" style="background-color: #426E55; height: 100vh;">
 
     <a href="#" class="brand-link" style="background-color: #2D4839; color: white;">
-        <img src="{{ asset('images/amanecer.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8;">
+        <img src="{{ asset('images/amanecer.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8;">
         <span class="brand-text font-weight-bold">DIA</span>
     </a>
 
     <div class="sidebar flex-grow-1 overflow-auto">
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
-                
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="true">
+
                 @can('sidebar.roles.y.permisos')
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-edit"></i>
-                        <p>
-                            Roles y Permisos
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.roles.index') }}" target="frameprincipal" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Rol y Permisos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.permisos.index') }}" target="frameprincipal" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Usuario</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-edit"></i>
+                            <p>
+                                Roles y Permisos
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.roles.index') }}" target="frameprincipal" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rol y Permisos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.permisos.index') }}" target="frameprincipal" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Usuario</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endcan
 
                 <li class="nav-item">
@@ -41,6 +42,13 @@
                         <i class="fas fa-tasks"></i>
                         <p>Tareas</p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('nasaApod.dashboard') }}" target="frameprincipal" class="nav-link">
+                        <i class="fas fa-globe"></i>
+                        <p>API NASA</p>
+                    </a>
+
                 </li>
             </ul>
         </nav>
@@ -93,8 +101,8 @@
 
 <!-- Script para enviar el logout al confirmar -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById('confirmLogoutBtn').addEventListener('click', function () {
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('confirmLogoutBtn').addEventListener('click', function() {
             document.getElementById('frm-logout').submit();
         });
     });
@@ -105,6 +113,7 @@
     .main-sidebar {
         background-color: #426E55 !important;
     }
+
     .main-sidebar .brand-link {
         background-color: #2D4839 !important;
     }
