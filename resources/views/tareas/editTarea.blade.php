@@ -1,29 +1,57 @@
 <!-- Editar Tareas -->
 @extends('layouts.appTareas')
 @section('content')
-<h1>Editar Tarea</h1>
-<form action="{{ route('tareas.update', $tarea) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div class="form-group">
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" id="titulo" class="form-control" value="{{ old('titulo', $tarea->titulo) }}" required>
-    </div>
-    <div class="form-group">
-        <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion" class="form-control">{{ old('descripcion', $tarea->descripcion) }}</textarea>
-    </div>
-    <div class="form-group">
-        <label for="estado">Estado:</label>
-        <select name="estado" id="estado" class="form-control">
-            <option value="0" {{ !$tarea->estado ? 'selected' : '' }}>Pendiente</option>
-            <option value="1" {{ $tarea->estado ? 'selected' : '' }}>Completada</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
-        <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" value="{{ old('fecha_vencimiento', $tarea->fecha_vencimiento) }}">
-    </div>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-</form>
+<!-- Encabezado -->
+<div class="card">
+  <div class="card-header">
+    <h3>Editar Tarea</h3>
+  </div>
+  <div class="card-body" id="formulario-container"></div>
+</div>
+<!-- JS para los métodos y llamada de formulario.html -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("/componentes/formulario.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("formulario-container").innerHTML = html;
+
+      const form = document.getElementById("form-tarea");
+
+      //Obtener y cambiar los valores de la tarea a editar
+      form.querySelector('input[name="titulo"]').value = "{{ $tarea->titulo }}";
+      form.querySelector('textarea[name="descripcion"]').value = "{{ $tarea->descripcion }}";
+      form.querySelector('select[name="estado"]').value = "{{ $tarea->estado }}";
+      form.querySelector('#token-field').value = "{{ csrf_token() }}";
+
+      //Cambiar el método para que formulario.html no duplique la tarea
+      const url = "{{ route('tareas.update', $tarea->id) }}";
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const data = new URLSearchParams(new FormData(form));
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': "{{ csrf_token() }}",
+            'X-HTTP-Method-Override': 'PUT'
+          },
+          body: data
+        })
+        .then(response => {
+          if (response.redirected) {
+            window.location.href = response.url;
+          } else if (response.ok) {
+            window.location.href = "{{ route('tareas.index') }}";
+          } else {
+            alert("Error al actualizar.");
+          }
+        })
+        .catch(() => alert("Error de conexión"));
+      });
+    });
+});
+</script>
+
 @endsection
