@@ -37,7 +37,9 @@
                     </td>
                     <td class="text-center">
                         <a href="{{ route('tareas.show', $tarea->id) }}" class="btn btn-info btn-sm">Ver</a>
+                        @can('editar tareas')
                         <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                        @endcan
                         <form action="{{ route('tareas.destroy', $tarea->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
