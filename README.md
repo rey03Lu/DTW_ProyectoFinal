@@ -14,6 +14,9 @@ Este proyecto es una aplicación web desarrollada con **Laravel 12**, centrada e
 **Usuario:** admin <br>
 **Contraseña:** 1234
 
+**Usuario:** usuario <br>
+**Contraseña:** 1234
+
 ## 🛠️ Tecnologías Utilizadas
 
 - **Laravel 12**
@@ -23,7 +26,7 @@ Este proyecto es una aplicación web desarrollada con **Laravel 12**, centrada e
 - **JavaScript (ES6+)**
 - **Axios**
 - **LocalStorage / SessionStorage**
-- **API REST Pública (por definir)**
+- **API REST Pública: NASA Astronomy Picture of the Day (APOD)**
 
 ## ⚙️ Funcionalidades implementadas
 
@@ -49,11 +52,11 @@ Este proyecto es una aplicación web desarrollada con **Laravel 12**, centrada e
 - Uso de eventos como `click`, `submit`, entre otros.
 - Funciones personalizadas para validación, manejo del DOM, etc.
 
-### 🌐 Consumo de API REST Externa
-> 📌 **Pendiente de integración**
-- La aplicación consumirá una API REST pública (ejemplo: clima, tipo de cambio, noticias).
-- Se utilizará `Axios` para enviar solicitudes HTTP.
-- Las respuestas en formato JSON se mostrarán visualmente en cards, tablas o listas.
+### 🌐 Consumo de API REST Externa: NASA Astronomy Picture of the Day (APOD)
+- Integración con la API pública de la NASA para mostrar la **Imagen Astronómica del Día**.
+- Uso de `Axios` para realizar solicitudes HTTP a la API de la NASA.
+- Visualización dinámica de la imagen diaria con su título y descripción.
+- Mejora la experiencia del usuario mostrando contenido actualizado y relevante del espacio.
 
 ## 🖼️ Presentación Visual
 
@@ -61,12 +64,12 @@ Este proyecto es una aplicación web desarrollada con **Laravel 12**, centrada e
 - Se incluyen estilos personalizados para:
   - Validaciones en formularios.
   - Alertas de éxito/error.
-  - Estados visuales de tareas (pendiente, en proceso, completada, etc).
+  - Estados visuales de tareas (pendiente, en proceso, completada).
 
 ## 👥 Integrantes del Grupo
 
-1. BA22025 | Fernando José Barraza Álvarez
-2. JQ22003 | Axel Rodrigo Juarez Quevedo
-3. MM18069 | Wendy Carolina Mejía Martínez
-4. MR21082 | Reyna Guadalupe Miranda Rivas
+1. BA22025 | Fernando José Barraza Álvarez  
+2. JQ22003 | Axel Rodrigo Juarez Quevedo  
+3. MM18069 | Wendy Carolina Mejía Martínez  
+4. MR21082 | Reyna Guadalupe Miranda Rivas  
 5. PM18077 | Francisco Javier Peraza Martínez
