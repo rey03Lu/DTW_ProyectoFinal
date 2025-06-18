@@ -10,6 +10,9 @@
     <p><strong>Título:</strong> {{ $tarea->titulo }}</p>
     <p><strong>Descripción:</strong> {{ $tarea->descripcion }}</p>
     <p><strong>Estado:</strong> {{ $tarea->estado ? 'Completada' : 'Pendiente' }}</p>
+    <p><strong>Fecha de Vencimiento:</strong>
+        {{ $tarea->fecha_vencimiento ? \Carbon\Carbon::parse($tarea->fecha_vencimiento)->format('d/m/Y') : 'Sin fecha' }}
+    </p>
     <a href="{{ route('tareas.index') }}" class="btn btn-secondary">Volver al listado</a>
   </div>
 </div>

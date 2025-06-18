@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       form.querySelector('textarea[name="descripcion"]').value = "{{ $tarea->descripcion }}";
       form.querySelector('select[name="estado"]').value = "{{ $tarea->estado }}";
       form.querySelector('#token-field').value = "{{ csrf_token() }}";
+      form.querySelector('input[name="fecha_vencimiento"]').value = "{{ $tarea->fecha_vencimiento }}"; // <-- Añade esto
 
       //Cambiar el método para que formulario.html no duplique la tarea
       const url = "{{ route('tareas.update', $tarea->id) }}";

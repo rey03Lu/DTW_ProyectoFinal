@@ -33,7 +33,8 @@ class tareaController extends Controller
         $request->validate([
             'titulo' => 'required',
             'fecha_vencimiento' => 'nullable|date|after_or_equal:today',
-            
+        ], [
+            'fecha_vencimiento.after_or_equal' => 'No se puede crear la tarea: la fecha de vencimiento no puede ser anterior al día de hoy.',
         ]);
 
         Tarea::create($request->all());
@@ -45,7 +46,7 @@ class tareaController extends Controller
      */
     public function show(string $id)
     {
-        $tarea = Tarea::findOrFail($id); 
+        $tarea = Tarea::findOrFail($id);
         return view('tareas.showTareas', compact('tarea'));
     }
 

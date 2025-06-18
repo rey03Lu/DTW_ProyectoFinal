@@ -13,6 +13,7 @@
                 <tr>
                     <th>Título</th>
                     <th>Estado</th>
+                    <th>Fecha de Vencimiento</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -21,6 +22,9 @@
                 <tr>
                     <td>{{ $tarea->titulo }}</td>
                     <td>{{ $tarea->estado ? 'Completada' : 'Pendiente' }}</td>
+                    <td>
+                        {{ $tarea->fecha_vencimiento ? \Carbon\Carbon::parse($tarea->fecha_vencimiento)->format('d/m/Y') : 'Sin fecha' }}
+                    </td>
                     <td class="text-center">
                         <a href="{{ route('tareas.show', $tarea->id) }}" class="btn btn-info btn-sm">Ver</a>
                         <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>

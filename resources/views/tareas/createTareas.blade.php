@@ -1,5 +1,16 @@
 @extends('layouts.appTareas')
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <!-- Encabezado -->
 <div class="card">
   <div class="card-header">
@@ -16,12 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("formulario-container").innerHTML = html;
 
       const form = document.getElementById("form-tarea");
-
-      // Agrega el token de Blade al campo oculto del HTML
       document.getElementById("token-field").value = "{{ csrf_token() }}";
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+
+        // Limpia errores anteriores
+        let errorDiv = document.querySelector('.alert-danger');
+        if (errorDiv) errorDiv.remove();
 
         const data = new URLSearchParams(new FormData(form));
 
@@ -33,13 +46,20 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           body: data
         })
-        .then(response => {
+        .then(async response => {
           if (response.redirected) {
             window.location.href = response.url;
-          } else if (response.ok) {
-            window.location.href = "{{ route('tareas.index') }}";
+          } else if (response.status === 422) {
+            // Errores de validación
+            const result = await response.json();
+            let errorHtml = '<div class="alert alert-danger"><ul>';
+            Object.values(result.errors).forEach(msgArr => {
+              msgArr.forEach(msg => errorHtml += `<li>${msg}</li>`);
+            });
+            errorHtml += '</ul></div>';
+            document.querySelector('.card').insertAdjacentHTML('afterbegin', errorHtml);
           } else {
-            alert("Error al guardar.");
+            alert("Error al crear la tarea.");
           }
         })
         .catch(() => alert("Error de conexión"));
