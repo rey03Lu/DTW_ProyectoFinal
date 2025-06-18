@@ -9,7 +9,15 @@
   <div class="card-body">
     <p><strong>Título:</strong> {{ $tarea->titulo }}</p>
     <p><strong>Descripción:</strong> {{ $tarea->descripcion }}</p>
-    <p><strong>Estado:</strong> {{ $tarea->estado ? 'Completada' : 'Pendiente' }}</p>
+    <p><strong>Estado:</strong>
+      @if ($tarea->estado == 1)
+        Completada
+      @elseif ($tarea->estado == 2)
+        En proceso
+      @else
+        Pendiente
+      @endif
+    </p>
     <p><strong>Fecha de Vencimiento:</strong>
         {{ $tarea->fecha_vencimiento ? \Carbon\Carbon::parse($tarea->fecha_vencimiento)->format('d/m/Y') : 'Sin fecha' }}
     </p>

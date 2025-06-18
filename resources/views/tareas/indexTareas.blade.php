@@ -11,7 +11,7 @@
         <div class="mb-3">
             <input id="buscarTarea" type="text" class="form-control" placeholder="Buscar tareas por título, estado o fecha...">
         </div>
-        
+
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -26,8 +26,10 @@
                 <tr>
                     <td>{{ $tarea->titulo }}</td>
                     <td>
-                        @if($tarea->estado)
+                        @if($tarea->estado == 1)
                             <span class="badge bg-success">Completada</span>
+                        @elseif($tarea->estado == 2)
+                            <span class="badge bg-info text-dark">En proceso</span>
                         @else
                             <span class="badge bg-warning text-dark">Pendiente</span>
                         @endif
@@ -60,14 +62,16 @@
                         <div class="modal-body">
                         <p><strong>Título:</strong> {{ $tarea->titulo }}</p>
                         <p><strong>Descripción:</strong> {{ $tarea->descripcion }}</p>
-                        <p><strong>Estado:</strong> 
-                            @if($tarea->estado)
-                            <span class="badge bg-success">Completada</span>
+                        <p><strong>Estado:</strong>
+                            @if($tarea->estado == 1)
+                                <span class="badge bg-success">Completada</span>
+                            @elseif($tarea->estado == 2)
+                                <span class="badge bg-info text-dark">En proceso</span>
                             @else
-                            <span class="badge bg-warning text-dark">Pendiente</span>
+                                <span class="badge bg-warning text-dark">Pendiente</span>
                             @endif
                         </p>
-                        <p><strong>Fecha de Vencimiento:</strong> 
+                        <p><strong>Fecha de Vencimiento:</strong>
                             {{ $tarea->fecha_vencimiento ? \Carbon\Carbon::parse($tarea->fecha_vencimiento)->format('d/m/Y') : 'Sin fecha' }}
                         </p>
                         </div>
@@ -97,17 +101,17 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       const modal = new bootstrap.Modal(document.getElementById('detalleTareaModal'));
-      
+
       document.querySelectorAll('.btn-ver-tarea').forEach(button => {
         button.addEventListener('click', function() {
           const tareaId = this.getAttribute('data-id');
-    
+
           fetch(`/tareas/${tareaId}`) // Ruta show de la tarea (AJAX)
             .then(response => response.json())
             .then(data => {
               document.getElementById('modal-titulo').textContent = data.titulo;
               document.getElementById('modal-descripcion').textContent = data.descripcion || 'Sin descripción';
-              
+
               const estadoSpan = document.getElementById('modal-estado');
               if(data.estado) {
                 estadoSpan.textContent = 'Completada';
@@ -116,9 +120,9 @@
                 estadoSpan.textContent = 'Pendiente';
                 estadoSpan.className = 'badge bg-warning text-dark';
               }
-    
+
               document.getElementById('modal-fecha').textContent = data.fecha_vencimiento || 'Sin fecha';
-    
+
               modal.show();
             })
             .catch(err => {
@@ -129,6 +133,6 @@
       });
     });
 </script>
-    
+
 
 @endsection
